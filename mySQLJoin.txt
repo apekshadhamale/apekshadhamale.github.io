@@ -1,0 +1,87 @@
+mysql> create database EmpDept;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use EmpDept;
+Database changed
+mysql> create table Employee(EmpNo int(5) primary key,Ename varchar(20),Job varc
+har(20),MGR int(5),HireDate date,Salary int(5),DeptNo int(5));
+Query OK, 0 rows affected (0.54 sec)
+
+mysql> create table Department(DeptNo int(5) primary key,Dname varchar(20),Locat
+ion varchar(20));
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> insert into Employee values(101,'Apeksha','Tester',450,'2011-7-04',45000,
+1);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into Employee values(102,'Harshal','Java Developer',550,'2016-8-09
+',56000,2);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Employee values(103,'Pramod','Marketing',610,'2008-6-02',6000
+0,3);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into Employee values(104,'Vidya','Research ',660,'2004-4-03',68000
+,4);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into Employee values(105,'Pooja','Purchase',440,'2009-4-08',68000,
+4);
+Query OK, 1 row affected (0.06 sec)
+
+
+mysql> insert into Employee values(106,'Radha','Purchase',440,'1994-5-08',70000,
+2);
+
+
+mysql> select * from employee;
++-------+---------+----------------+------+------------+--------+--------+
+| EmpNo | Ename   | Job            | MGR  | HireDate   | Salary | DeptNo |
++-------+---------+----------------+------+------------+--------+--------+
+|   101 | Apeksha | Tester         |  450 | 2011-07-04 |  45000 |      1 |
+|   102 | Harshal | Java Developer |  550 | 2016-08-09 |  56000 |      2 |
+|   103 | Pramod  | Marketing      |  610 | 2008-06-02 |  60000 |      3 |
+|   104 | Vidya   | Research       |  660 | 2004-04-03 |  68000 |      4 |
+|   105 | Pooja   | Purchase       |  440 | 2009-04-08 |  68000 |      4 |
+|   106 | Radha   | Purchase       |  440 | 1994-05-08 |  70000 |      2 |
++-------+---------+----------------+------+------------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Department values(2,'Developer','Pune');
+Query OK, 1 row affected (0.36 sec)
+
+mysql> insert into Department values(1,'Tester','Mumbai');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into Department values(3,'Marketing','Delhi');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into Department values(4,'Research','kolkata');
+Query OK, 1 row affected (0.09 sec)
+
+
+mysql> select * from department;
++--------+-----------+----------+
+| DeptNo | Dname     | Location |
++--------+-----------+----------+
+|      1 | Tester    | Mumbai   |
+|      2 | Developer | Pune     |
+|      3 | Marketing | Delhi    |
+|      4 | Research  | kolkata  |
++--------+-----------+----------+
+4 rows in set (0.32 sec)
+
+mysql> select Department.DName, count(*) as 'Number of Employee' from Employee i
+nner join Department on Employee.DeptNo=Department.DeptNo group by Department.Dn
+ame;
++-----------+--------------------+
+| DName     | Number of Employee |
++-----------+--------------------+
+| Developer |                  2 |
+| Marketing |                  1 |
+| Research  |                  2 |
+| Tester    |                  1 |
++-----------+--------------------+
+4 rows in set (0.00 sec)
